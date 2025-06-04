@@ -1,0 +1,19 @@
+{
+  "name": "blog-mongo-time-series-collection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite-node main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/mongodb": "^4.0.6",
+    "@types/node": "^22.15.29",
+    "mongodb": "^6.17.0",
+    "mongodb-memory-server": "^10.1.4",
+    "vite-node": "^3.2.1"
+  }
+}

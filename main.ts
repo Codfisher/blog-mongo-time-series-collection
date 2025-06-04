@@ -129,9 +129,6 @@ async function run() {
   const buildInfo = await client.db().command({ buildInfo: 1 });
   printTitle('MongoDB Time Series Collection 效能測試');
   console.log(`🔧 MongoDB 版本: ${buildInfo.version} (Client: mongodb@${require('mongodb/package.json').version})`);
-  console.log(`📅 測試時間: ${new Date().toLocaleString()}`);
-  console.log(`🔄 測試配置: 每項測試執行 ${CONFIG.testRuns} 次`);
-  console.log(`📊 測試資料量: ${CONFIG.dataSizes.map(s => formatNumber(s)).join(', ')} 筆`);
   console.log();
 
   const db: Db = client.db("testDb");

@@ -72,7 +72,6 @@ async function run() {
   const buildInfo = await client.db().command({ buildInfo: 1 });
   printTitle('MongoDB Time Series Collection 效能測試');
   console.log(`🔧 MongoDB 版本: ${buildInfo.version}`);
-  console.log(`📅 測試時間: ${new Date().toLocaleString()}`);
   console.log();
 
   const db: Db = client.db("testDb");
@@ -105,7 +104,7 @@ async function run() {
     printSeparator('-', 60);
 
     // 1. 測試插入性能
-    console.log('\n⏱️  插入效能測試');
+    console.log('\n✏️  寫入');
     const generalInsertTime = await measureInsertSpeed(generalCollection, data);
     const timeSeriesInsertTime = await measureInsertSpeed(timeSeriesCollection, data);
     
@@ -117,7 +116,7 @@ async function run() {
     const generalStats = await getCollectionStats(db, 'generalCollection');
     const timeSeriesStats = await getCollectionStats(db, 'timeSeriesCollection');
 
-    console.log('\n💾 儲存空間使用');
+    console.log('\n💾 儲存');
     console.log(`   一般 Collection       : ${formatBytes(generalStats.size).padStart(12)}`);
     console.log(`   Time Series Collection: ${formatBytes(timeSeriesStats.size).padStart(12)}`);
     const spaceReduction = ((generalStats.size - timeSeriesStats.size) / generalStats.size * 100);
@@ -129,7 +128,7 @@ async function run() {
 
     // 2. 測試查詢性能
     const query = { timestamp: { $gt: new Date(Date.now() - 1000 * 100) } };
-    console.log('\n🔍 查詢效能測試');
+    console.log('\n🔍 查詢');
     const generalQueryTime = await measureQuerySpeed(generalCollection, query);
     const timeSeriesQueryTime = await measureQuerySpeed(timeSeriesCollection, query);
     
@@ -139,7 +138,7 @@ async function run() {
 
     // 3. 測試刪除性能
     const deleteQuery = { value: { $gt: 50 } };  // 假設刪除 value > 50 的資料
-    console.log('\n🗑️  刪除效能測試');
+    console.log('\n🗑️  刪除');
     const generalDeleteTime = await measureDeleteSpeed(generalCollection, deleteQuery);
     const timeSeriesDeleteTime = await measureDeleteSpeed(timeSeriesCollection, deleteQuery);
     
